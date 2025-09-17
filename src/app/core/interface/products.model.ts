@@ -12,6 +12,9 @@ export interface Rating {
   rate: number;
   count: number;
 }
+export interface CartItem extends Product {
+  quantity: number;
+}
 // Products State
 export interface ProductsState {
   list: Product[];

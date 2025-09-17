@@ -1,4 +1,9 @@
-import { Component, ChangeDetectionStrategy, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
   getCategories,
@@ -50,6 +55,7 @@ export class ProductListComponent implements OnInit {
     this.loading = true;
     this.store.dispatch(loadProducts());
 
+
     this.products$.subscribe({
       next: (products) => {
         if (products.length > 0) {
@@ -58,17 +64,18 @@ export class ProductListComponent implements OnInit {
           this.loading = false;
           this.error = '';
           this.updateProductsAfterChange();
+
+          console.log(products);
         }
       },
     });
+
 
     // Search products with debounce
     this.searchSubject.pipe(debounceTime(1000)).subscribe((term) => {
       this.searchProducts(term);
     });
   }
-
-
 
   // Get stars
   getStars(rate: number): number[] {
