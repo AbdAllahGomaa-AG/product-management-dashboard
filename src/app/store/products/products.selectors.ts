@@ -36,3 +36,13 @@ export const selectFilteredProducts = createSelector(
     );
   },
 );
+
+export const selectCategories = createSelector(
+  selectProductsState,
+  (state) => state.categories,
+);
+
+export const selectSelectedCategory = createSelector(
+  selectProductsState,
+  (state: ProductsState) => state.category,
+);
