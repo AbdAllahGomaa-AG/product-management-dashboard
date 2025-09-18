@@ -17,7 +17,7 @@ import { ProductDetailEffects } from './store/product-detail/product-detail.effe
 import {
   metaReducers,
   getInitialCartState,
-} from './store/meta-reducers/local-storage.reducer';
+  } from './store/meta-reducers/local-storage.reducer';
 import { AppState } from './store/app.state';
 
 import { ProductListComponent } from './features/products/product-list/product-list.component';
@@ -27,6 +27,8 @@ import { FavoritesComponent } from './features/favorites/favorites/favorites.com
 import { HeroComponent } from './features/hero/hero.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { favoritesReducer } from './store/favorites/favorites.reducer';
+import { getInitialFavoritesState } from './store/meta-reducers/local-storage.reducer';
 
 @NgModule({
   declarations: [
@@ -39,24 +41,26 @@ import { SharedModule } from 'src/app/shared/shared.module';
   ],
   imports: [
     BrowserModule,
+    SharedModule,
     AppRoutingModule,
     StoreModule.forRoot<AppState>(
       {
         products: productsReducer,
         productDetail: productDetailReducer,
         cart: cartReducer,
+        favorites: favoritesReducer,
       },
       {
         metaReducers,
         initialState: {
           cart: getInitialCartState(),
+          favorites: getInitialFavoritesState(),
         },
       },
     ),
     EffectsModule.forRoot([ProductsEffects, ProductDetailEffects]),
     HttpClientModule,
     NavbarComponent,
-    SharedModule,
     RouterModule,
   ],
   bootstrap: [AppComponent],

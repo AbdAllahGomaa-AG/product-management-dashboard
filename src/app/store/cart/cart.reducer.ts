@@ -54,4 +54,11 @@ export const  cartReducer = createReducer(
     ...state,
     items: cart,
   })),
+  // Update quantity
+  on(CartActions.updateQuantity, (state, { productId, quantity }) => ({
+    ...state,
+    items: state.items.map((item) =>
+      item.id === productId ? { ...item, quantity } : item,
+    ),
+  })),
 );

@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { ProductsState } from 'src/app/core/interface/products.model';
@@ -11,6 +11,7 @@ import { selectSelectedProduct } from 'src/app/store/product-detail/product-deta
   selector: 'app-products-details-component',
   templateUrl: './products-details-component.component.html',
   styleUrls: ['./products-details-component.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsDetailsComponentComponent implements OnInit {
   //#region  inject

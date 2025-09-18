@@ -16,3 +16,7 @@ export const selectCartTotal = createSelector(selectCartItems, (items) =>
 export const selectCartCount = createSelector(selectCartItems, (items) =>
   items.reduce((count, item) => count + item.quantity, 0),
 );
+// Update quantity
+export const updateQuantity = createSelector(selectCartItems, (items) =>
+  items.reduce((count, item) => count + item.quantity, 0),
+);
