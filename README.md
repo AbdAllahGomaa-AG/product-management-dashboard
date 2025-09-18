@@ -21,19 +21,10 @@
 - **E2E Tests**: Critical user journeys
 - **Coverage Target**: >80% code coverage
 
-## 📄 License
-
-[Add your license information here]
-
-## 👥 Contributors
-
-[Add contributor information here]
 
 ---
 
-**Built with ❤️ using Angular 15, NgRx, and modern web technologies.**lint
 
-# or
 
 ng lint
 
@@ -385,14 +376,6 @@ ng add @nguniversal/express-engine
 - **E2E Tests**: Critical user journeys
 - **Coverage Target**: >80% code coverage
 
-## 📄 License
 
-[Add your license information here]
-
-## 👥 Contributors
-
-[Add contributor information here]
-
----
 
 **Built with ❤️ using Angular 15, NgRx, and modern web technologies.**
