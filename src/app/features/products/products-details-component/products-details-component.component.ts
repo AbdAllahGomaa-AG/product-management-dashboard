@@ -1,8 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { ProductsState } from 'src/app/core/interface/products.model';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Product } from 'src/app/core/interface/products.model';
 import * as ProductDetailActions from 'src/app/store/product-detail/product-detail.actions';
 import { selectSelectedProduct } from 'src/app/store/product-detail/product-detail.selectors';
@@ -17,7 +22,6 @@ export class ProductsDetailsComponentComponent implements OnInit {
   //#region  inject
   private readonly activatedRoute = inject(ActivatedRoute);
   private store = inject(Store<{ products: ProductsState }>);
-
   //#endregion
 
   //#region  variables
@@ -28,13 +32,26 @@ export class ProductsDetailsComponentComponent implements OnInit {
   //#region  ngOnInit
   ngOnInit(): void {
     this.GetProductById();
-    this.store.dispatch(
-      ProductDetailActions.loadProductById({ id: this.productId }),
-    );
-    this.product$ = this.store.select(selectSelectedProduct);
-    this.product$.subscribe((product) => {
-      console.log(product);
-    });
+
+    // Get product from resolver data first
+    const resolvedProduct = this.activatedRoute.snapshot.data[
+      'product'
+    ] as Product | null;
+
+    if (resolvedProduct) {
+      // Use resolved product data
+      this.product$ = of(resolvedProduct);
+      console.log('Product from resolver:', resolvedProduct);
+    } else {
+      // Fallback: Load product using the old way
+      this.store.dispatch(
+        ProductDetailActions.loadProductById({ id: this.productId }),
+      );
+      this.product$ = this.store.select(selectSelectedProduct);
+      this.product$.subscribe((product) => {
+        console.log('Product from store:', product);
+      });
+    }
   }
 
   GetProductById(): void {

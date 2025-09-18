@@ -5,6 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { ActivatedRoute } from '@angular/router';
 import {
   getCategories,
   loadProducts,
@@ -24,13 +25,13 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss'],
-
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductListComponent implements OnInit {
   // Dependencies
   private store = inject(Store<{ products: ProductsState }>);
   private translate = inject(TranslateService);
+  private route = inject(ActivatedRoute);
 
   // Properties
   products$ = this.store.select(selectProductList);
@@ -53,23 +54,34 @@ export class ProductListComponent implements OnInit {
   pages: number[] = [];
 
   ngOnInit(): void {
-    // Load products
-    this.loading = true;
-    this.store.dispatch(loadProducts());
+    // Get products from resolver data
+    const resolvedProducts = this.route.snapshot.data['products'] as Product[];
 
-    this.products$.subscribe({
-      next: (products) => {
-        if (products.length > 0) {
-          this.products = products;
-          this.allFilteredProducts = products;
-          this.loading = false;
-          this.error = '';
-          this.updateProductsAfterChange();
+    if (resolvedProducts && resolvedProducts.length > 0) {
+      this.products = resolvedProducts;
+      this.allFilteredProducts = resolvedProducts;
+      this.loading = false;
+      this.error = '';
+      this.updateProductsAfterChange();
+      console.log('Products from resolver:', resolvedProducts);
+    } else {
+      // Fallback: Load products if resolver didn't work
+      this.loading = true;
+      this.store.dispatch(loadProducts());
 
-          console.log(products);
-        }
-      },
-    });
+      this.products$.subscribe({
+        next: (products) => {
+          if (products.length > 0) {
+            this.products = products;
+            this.allFilteredProducts = products;
+            this.loading = false;
+            this.error = '';
+            this.updateProductsAfterChange();
+            console.log('Products from store:', products);
+          }
+        },
+      });
+    }
 
     // Search products with debounce
     this.searchSubject.pipe(debounceTime(1000)).subscribe((term) => {

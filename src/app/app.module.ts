@@ -24,12 +24,7 @@ import {
 } from './store/meta-reducers/local-storage.reducer';
 import { AppState } from './store/app.state';
 
-import { ProductListComponent } from './features/products/product-list/product-list.component';
-import { ProductsDetailsComponentComponent } from './features/products/products-details-component/products-details-component.component';
-import { CartComponent } from './features/cart/cart/cart.component';
-import { FavoritesComponent } from './features/favorites/favorites/favorites.component';
 import { HeroComponent } from './features/hero/hero.component';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { favoritesReducer } from './store/favorites/favorites.reducer';
 import { getInitialFavoritesState } from './store/meta-reducers/local-storage.reducer';
@@ -38,21 +33,29 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpInterceptorService } from './core/interceptors/http.interceptor';
 import { CartEffects } from './store/cart/cart.effects';
 import { FavoritesEffects } from './store/favorites/favorites.effects';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { ProductsModule } from './features/products/products.module';
+import { CartModule } from './features/cart/cart.module';
+import { FavoritesModule } from './features/favorites/favorites.module';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductListComponent,
-    ProductsDetailsComponentComponent,
-    CartComponent,
-    FavoritesComponent,
+
     HeroComponent,
   ],
   imports: [
     BrowserModule,
+    ScrollingModule,
+    NavbarComponent,
     SharedModule,
-
     AppRoutingModule,
+    HttpClientModule,
+    RouterModule,
+    ProductsModule,
+    CartModule,
+    FavoritesModule,
     StoreModule.forRoot<AppState>(
       {
         products: productsReducer,
@@ -68,6 +71,12 @@ import { FavoritesEffects } from './store/favorites/favorites.effects';
         },
       },
     ),
+    EffectsModule.forRoot([
+      ProductsEffects,
+      ProductDetailEffects,
+      CartEffects,
+      FavoritesEffects,
+    ]),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -75,16 +84,12 @@ import { FavoritesEffects } from './store/favorites/favorites.effects';
         deps: [HttpClient],
       },
     }),
-    EffectsModule.forRoot([ProductsEffects, ProductDetailEffects, CartEffects, FavoritesEffects]),
-    HttpClientModule,
-    NavbarComponent,
-    RouterModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
-      multi: true, 
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],

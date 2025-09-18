@@ -1,33 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductListComponent } from './features/products/product-list/product-list.component';
-import { ProductsDetailsComponentComponent } from './features/products/products-details-component/products-details-component.component';
-import { CartComponent } from './features/cart/cart/cart.component';
-import { FavoritesComponent } from './features/favorites/favorites/favorites.component';
 import { HeroComponent } from './features/hero/hero.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: HeroComponent,
-  },
+  { path: '', component: HeroComponent },
   {
     path: 'products',
-    component: ProductListComponent,
+    loadChildren: () =>
+      import('./features/products/products.module').then(
+        (m) => m.ProductsModule,
+      ),
   },
-  {
-    path: 'productsDetails/:id',
-    component: ProductsDetailsComponentComponent,
-  },
+
   {
     path: 'cart',
-    component: CartComponent,
+    loadChildren: () =>
+      import('./features/cart/cart.module').then((m) => m.CartModule),
   },
   {
     path: 'favorites',
-    component: FavoritesComponent,
-  }
+    loadChildren: () =>
+      import('./features/favorites/favorites.module').then(
+        (m) => m.FavoritesModule,
+      ),
+  },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
