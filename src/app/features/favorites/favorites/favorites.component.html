@@ -4,14 +4,14 @@
       <h2
         class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl text-center"
       >
-        favorites cart ({{ (FavItems$ | async)?.length }})
+        {{'favorites.favorites_cart'|translate}} ({{ (FavItems$ | async)?.length }})
       </h2>
       <ng-container *ngIf="((FavItems$ | async)?.length || 0) > 0">
       <button
         (click)="clearAllFavorites()"
         class="rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400"
       >
-        Clear All Favorites
+        {{'favorites.clear_all_favorites'|translate}}
       </button>
     </ng-container>
     </div>

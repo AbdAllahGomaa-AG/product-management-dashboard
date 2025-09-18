@@ -18,6 +18,7 @@ import {
 } from 'src/app/store/products/products.selectors';
 import { Product, ProductsState } from 'src/app/core/interface/products.model';
 import { debounceTime, Subject } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product-list',
@@ -29,6 +30,7 @@ import { debounceTime, Subject } from 'rxjs';
 export class ProductListComponent implements OnInit {
   // Dependencies
   private store = inject(Store<{ products: ProductsState }>);
+  private translate = inject(TranslateService);
 
   // Properties
   products$ = this.store.select(selectProductList);
@@ -55,7 +57,6 @@ export class ProductListComponent implements OnInit {
     this.loading = true;
     this.store.dispatch(loadProducts());
 
-
     this.products$.subscribe({
       next: (products) => {
         if (products.length > 0) {
@@ -69,7 +70,6 @@ export class ProductListComponent implements OnInit {
         }
       },
     });
-
 
     // Search products with debounce
     this.searchSubject.pipe(debounceTime(1000)).subscribe((term) => {

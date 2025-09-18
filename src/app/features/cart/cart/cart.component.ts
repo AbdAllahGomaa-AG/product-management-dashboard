@@ -8,6 +8,7 @@ import { selectCartTotal } from 'src/app/store/cart/cart.selectors';
 import { removeFromCart, updateQuantity } from 'src/app/store/cart/cart.actions';
 import { addToFavorites } from 'src/app/store/favorites/favorites.actions';
 import { selectCartCount } from 'src/app/store/cart/cart.selectors';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-cart',
@@ -21,6 +22,7 @@ export class CartComponent implements OnInit {
   cartItems$!: Observable<Product[]>;
   cartTotal$!: Observable<number>;
   private store = inject(Store<{ cart: CartState }>);
+  private translate = inject(TranslateService); 
 
   ngOnInit(): void {
     this.cartItems$ = this.store.select(selectCartItems);

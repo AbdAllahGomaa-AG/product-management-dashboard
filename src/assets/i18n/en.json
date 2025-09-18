@@ -1,0 +1,43 @@
+{
+  "NAV": {
+    "HOME": "Home",
+    "PRODUCTS": "Products",
+    "CART": "Cart",
+    "FAVORITES": "Favorites"
+  },
+  "BUTTON": {
+    "ADD_TO_CART": "Add to cart",
+    "REMOVE_FROM_FAVORITES": "Remove from Favorites",
+    "ADD_TO_FAVORITES": "Add to Favorites",
+    "SWITCH_LANG": "Switch Language"
+  },
+  "product": {
+    "home": "Home",
+    "products": "Products",
+    "filter": "Filter",
+    "sort": "Sort",
+    "search": "Search..."
+  },
+  "cart": {
+    "Shopping": "Shopping Cart",
+    "Order_summary": "Order summary",
+    "Original_price": "Original price",
+    "Savings": "Savings",
+    "Store_Pickup": "Store Pickup",
+    "Subtotal": "Subtotal",
+    "Total": "Total",
+    "Favorites": "Favorites",
+    "Proceed_to_Checkout": "Proceed to Checkout",
+    "Continue_Shopping": "Continue Shopping",
+    "Remove": "Remove"
+  },
+  "favorites": {
+    "favorites_cart": "Favorites Cart",
+    "clear_all_favorites": "Clear All Favorites"
+  },
+  "hero": {
+    "title": "Shop the Best, Love What You Buy",
+    "description": "Discover top deals on electronics, fashion & accessories. Fast delivery, quality you can trust.",
+    "button": "Shop Now"
+  }
+}

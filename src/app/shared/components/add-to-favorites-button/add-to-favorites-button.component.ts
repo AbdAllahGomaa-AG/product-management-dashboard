@@ -3,14 +3,17 @@ import { FavoritesState } from 'src/app/store/favorites/favorites.reducer';
 import { Store } from '@ngrx/store';
 import { Product } from 'src/app/core/interface/products.model';
 import { addToFavorites, removeFromFavorites } from 'src/app/store/favorites/favorites.actions';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-to-favorites-button',
   templateUrl: './add-to-favorites-button.component.html',
   styleUrls: ['./add-to-favorites-button.component.scss'],
+
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddToFavoritesButtonComponent {
+  private translate = inject(TranslateService);
   private store = inject(Store<{ favorites: FavoritesState }>);
   @Input() product!: Product;
   @Input() isFavorite!: boolean;
@@ -23,5 +26,6 @@ export class AddToFavoritesButtonComponent {
     }
     this.isFavorite = !this.isFavorite;
   }
+  
  
 }

@@ -8,6 +8,7 @@ import {
   selectFavoritesCount,
 } from 'src/app/store/favorites/favorites.selectors';
 import { clearFavorites } from 'src/app/store/favorites/favorites.actions';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
@@ -16,6 +17,7 @@ import { clearFavorites } from 'src/app/store/favorites/favorites.actions';
 })
 export class FavoritesComponent implements OnInit {
   private store = inject(Store<{ favorites: FavoritesState }>);
+  private translate = inject(TranslateService);
   FavItems$!: Observable<Product[]>;
   FavCount$!: Observable<number>;
 

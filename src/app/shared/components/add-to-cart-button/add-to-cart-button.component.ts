@@ -3,6 +3,7 @@ import { Product } from 'src/app/core/interface/products.model';
 import { Store } from '@ngrx/store';
 import { CartState } from 'src/app/store/cart/cart.reducer';
 import { addToCart } from 'src/app/store/cart/cart.actions';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-to-cart-button',
@@ -12,6 +13,7 @@ import { addToCart } from 'src/app/store/cart/cart.actions';
 })
 export class AddToCartButtonComponent {
   private store = inject(Store<{ cart: CartState }>);
+  private translate = inject(TranslateService); 
 
   @Input() product!: Product;
 

@@ -1,0 +1,43 @@
+{
+  "NAV": {
+    "HOME": "الرئيسية",
+    "PRODUCTS": "المنتجات",
+    "CART": "السلة",
+    "FAVORITES": "المفضلة"
+  },
+  "BUTTON": {
+    "ADD_TO_CART": "إضافة إلى السلة",
+    "REMOVE_FROM_FAVORITES": "إزالة من المفضلة",
+    "ADD_TO_FAVORITES": "إضافة إلى المفضلة",
+    "SWITCH_LANG": "تبديل اللغة"
+  },
+  "product": {
+    "home": "الرئيسية",
+    "products": "المنتجات",
+    "filter": "تصفية",
+    "sort": "ترتيب",
+    "search": "بحث..."
+  },
+  "cart": {
+    "Shopping": "سلة التسوق",
+    "Order_summary": "ملخص الطلب",
+    "Original_price": "السعر الأصلي",
+    "Savings": "التوفير",
+    "Store_Pickup": "الاستلام من المتجر",
+    "Subtotal": "المجموع الفرعي",
+    "Total": "الإجمالي",
+    "Favorites": "المفضلة",
+    "Proceed_to_Checkout": "إتمام الشراء",
+    "Continue_Shopping": "متابعة التسوق",
+    "Remove": "إزالة"
+  },
+  "favorites": {
+    "favorites_cart": "سلة المفضلة",
+    "clear_all_favorites": "إزالة الكل"
+  },
+  "hero": {
+    "title": "تسوق الأفضل، واحب ما تشتريه",
+    "description": "اكتشف أفضل العروض على الإلكترونيات، الأزياء والإكسسوارات. توصيل سريع وجودة يمكنك الوثوق بها.",
+    "button": "تسوق الآن"
+  }
+}
